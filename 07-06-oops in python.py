@@ -125,3 +125,4 @@ class PasswordProtectedCalculator:
 pp_calc = PasswordProtectedCalculator()
 print("5 + 3 =", pp_calc.calculate("+", 5, 3))
 # print(pp_calc.__password)  # This would raise an AttributeError
+print("Bye")

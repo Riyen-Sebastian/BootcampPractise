@@ -1,5 +1,6 @@
 # Dictionaries in Python
 
+
 # 1. Creating Dictionaries
 empty_dict = dict()
 person = {'name': 'Alice', 'age': 30, 'city': 'New York'}

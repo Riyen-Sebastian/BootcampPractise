@@ -1,4 +1,4 @@
-#tuples on python
+#Tuples on python
 
 # Tuples: Store multiple items in a single variable
 my_tuple = ("pizza", 42, True)

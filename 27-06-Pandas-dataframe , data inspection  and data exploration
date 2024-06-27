@@ -1,0 +1,63 @@
+import pandas as pd
+import numpy as np
+
+# Creating a DataFrame
+# From a dictionary
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Paris', 'Tokyo']
+}
+df = pd.DataFrame(data)
+print("DataFrame created from dictionary:")
+print(df)
+print("\n")
+
+# From a CSV file (from a file named 'sample.csv')
+df_csv = pd.read_csv('sample.csv')
+print("DataFrame created from CSV:")
+print(df_csv)
+print("\n")
+
+# Data Inspection
+print("Data Inspection:")
+print("DataFrame info:")
+df.info()
+print("\n")
+
+print("First 2 rows of the DataFrame:")
+print(df.head(2))
+print("\n")
+
+print("Summary statistics:")
+print(df.describe())
+print("\n")
+
+print("Missing values count:")
+print(df.isnull().sum())
+print("\n")
+
+print("Column names:")
+print(df.columns)
+print("\n")
+
+print("Data types:")
+print(df.dtypes)
+print("\n")
+
+# Data Exploration
+print("Data Exploration:")
+print("Value counts for 'City' column:")
+print(df['City'].value_counts())
+print("\n")
+
+print("Unique values in 'City' column:")
+print(df['City'].unique())
+print("\n")
+
+# Adding a numerical column for correlation example
+df['Salary'] = [50000, 60000, 75000, 65000]
+
+print("Correlation matrix:")
+print(df.corr())
+print("\n")

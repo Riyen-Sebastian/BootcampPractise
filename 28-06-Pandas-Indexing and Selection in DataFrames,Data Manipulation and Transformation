@@ -1,0 +1,93 @@
+import pandas as pd
+
+# Sample DataFrame for examples
+data = {
+    'Customer ID': [1, 2, 3, 4, 5],
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Gender': ['F', 'M', 'M', 'M', 'F'],
+    'Age': [24, 30, 22, 35, 29],
+    'Income (INR)': [50000, 60000, 55000, 45000, 70000],
+    'Loan Amount Request (INR)': [150000, 80000, 200000, 50000, 120000],
+    'Credit Score': [700, 650, 710, 680, 690],
+    'Property ID': [101, 102, 103, 104, 105]
+}
+
+df = pd.DataFrame(data)
+
+# 1. Indexing and Selection
+# Selecting rows where Age is greater than 25
+selected_df = df[df['Age'] > 25]
+print("Selected rows where Age > 25:")
+print(selected_df)
+
+# 2. Applying Functions
+# Creating a new column 'Loan Amount Category' based on 'Loan Amount Request (USD)' values
+df['Loan Amount Category'] = df['Loan Amount Request (INR)'].apply(lambda x: 'High' if x > 100000 else 'Low')
+print("\nDataFrame with 'Loan Amount Category':")
+print(df)
+
+# 3. Dropping Duplicates
+# Creating a sample DataFrame with duplicate rows
+data_with_duplicates = {
+    'Customer ID': [1, 2, 2, 3, 4, 4],
+    'Name': ['Alice', 'Bob', 'Bob', 'Charlie', 'David', 'David'],
+    'Property ID': [101, 102, 102, 103, 104, 104]
+}
+df_duplicates = pd.DataFrame(data_with_duplicates)
+
+# Dropping duplicate rows based on 'Customer ID' and 'Property ID'
+deduped_df = df_duplicates.drop_duplicates(subset=['Customer ID', 'Property ID'])
+print("\nDataFrame after dropping duplicates:")
+print(deduped_df)
+
+# 4. Renaming Columns
+# Renaming columns for readability
+df.rename(columns={'Income (INR)': 'Income', 'Loan Amount Request (INR)': 'Loan Amount'}, inplace=True)
+print("\nDataFrame with renamed columns:")
+print(df)
+
+# 5. Grouping and Aggregating
+# Grouping by 'Gender' and calculating the mean 'Income'
+grouped_df = df.groupby('Gender')['Income'].mean().reset_index()
+print("\nMean Income by Gender:")
+print(grouped_df)
+
+# 6. Filtering
+# Filtering rows where 'Credit Score' is above 680
+filtered_df = df[df['Credit Score'] > 680]
+print("\nFiltered rows where Credit Score > 680:")
+print(filtered_df)
+
+# 7. Sorting
+# Sorting by 'Age' in descending order
+sorted_df = df.sort_values(by='Age', ascending=False)
+print("\nDataFrame sorted by Age (descending):")
+print(sorted_df)
+
+# 8. Merging DataFrames
+# Creating another sample DataFrame to merge with
+additional_data = {
+    'Customer ID': [1, 2, 3, 6],
+    'Phone Number': ['123-456-7890', '234-567-8901', '345-678-9012', '456-789-0123']
+}
+df_additional = pd.DataFrame(additional_data)
+
+# Merging on 'Customer ID'
+merged_df = pd.merge(df, df_additional, on='Customer ID', how='left')
+print("\nMerged DataFrame:")
+print(merged_df)
+
+# 9. Applying Custom Functions
+# Defining a custom function to categorize income
+def categorize_income(income):
+    if income > 60000:
+        return 'High'
+    elif income > 50000:
+        return 'Medium'
+    else:
+        return 'Low'
+
+# Applying the custom function to create a new column 'Income Category'
+df['Income Category'] = df['Income'].apply(categorize_income)
+print("\nDataFrame with 'Income Category':")
+print(df)

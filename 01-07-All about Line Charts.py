@@ -88,4 +88,3 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-print("Finished practicing! That was really informative.")
